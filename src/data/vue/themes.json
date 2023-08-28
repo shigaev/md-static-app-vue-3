@@ -1,0 +1,20 @@
+{
+  "themes": [
+    {
+      "id": 0,
+      "title": "Введение",
+      "urlPath": "/vue/introduction",
+      "name": "introduction",
+      "contentPath": "/content/vue/introduction.md",
+      "classActive": false
+    },
+    {
+      "id": 1,
+      "title": "Роутинг",
+      "urlPath": "/vue/routing",
+      "name": "routing",
+      "contentPath": "/content/vue/routing.md",
+      "classActive": false
+    }
+  ]
+}

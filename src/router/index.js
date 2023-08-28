@@ -1,7 +1,5 @@
-import { createRouter, createWebHistory } from "vue-router";
-import Home from "@/views/Home.vue";
-import About from "@/views/About.vue";
-import List from "@/components/home/list.json";
+import {createRouter, createWebHistory} from "vue-router";
+import ListVue from "@/data/vue/themes.json";
 import NotFound from "@/views/NotFound.vue";
 
 const layout = "base-layout";
@@ -10,34 +8,25 @@ const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
-            path: "/",
-            name: "home",
+            path: "/vue",
+            name: "vue",
             meta: {
-                title: "Home",
+                title: "Vue",
                 layout: layout,
             },
-            component: Home,
+            component: () => import("../views/vue/Index.vue"),
         },
         {
-            path: "/about",
-            name: "about",
+            path: "/vue/:name",
+            name: "view",
             meta: {
-                title: "About",
+                title: "View",
                 layout: layout,
             },
-            component: () => import("../views/About.vue"),
-        },
-        {
-            path: "/:name",
-            name: "name",
-            meta: {
-                title: "",
-                layout: layout,
-            },
-            component: () => import("../views/HomeView.vue"),
+            component: () => import("../views/vue/View.vue"),
             beforeEnter(to) {
                 const sitePath = to.path;
-                const listThemes = List.themes;
+                const listThemes = ListVue.themes;
                 const resultPath = listThemes.some(
                     (item) => item.urlPath === sitePath
                 );
@@ -45,7 +34,7 @@ const router = createRouter({
                 if (!resultPath)
                     return {
                         name: "NotFound",
-                        params: { pathMatch: to.path.substring(1).split("/") },
+                        params: {pathMatch: to.path.substring(1).split("/")},
                         query: to.query,
                         hash: to.hash,
                     };
@@ -60,6 +49,15 @@ const router = createRouter({
             },
             component: NotFound,
         },
+        {
+            path: "/",
+            name: "Main",
+            meta: {
+                title: "Main Component",
+                layout: layout,
+            },
+            component: () => import("../views/Main.vue"),
+        }
     ],
 });
 

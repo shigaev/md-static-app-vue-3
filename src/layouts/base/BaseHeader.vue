@@ -9,14 +9,14 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <RouterLink class="nav-link" to="/">Home</RouterLink>
-                        </li>
+<!--                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <RouterLink class="nav-link" to="/about">About</RouterLink>
                         </li>
-                    </ul>
+                        <li class="nav-item">
+                            <RouterLink class="nav-link" to="/blog">Blog</RouterLink>
+                        </li>
+                    </ul>-->
                 </div>
             </div>
         </nav>
@@ -24,14 +24,14 @@
 </template>
 
 <script>
-import {RouterLink} from 'vue-router'
+import {RouterLink} from 'vue-router';
 
 export default {
     name: "BaseHeader",
     components: {
         RouterLink
     }
-}
+};
 </script>
 
 <style lang="scss" scoped>
