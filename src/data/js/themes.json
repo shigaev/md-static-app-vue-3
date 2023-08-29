@@ -1,0 +1,12 @@
+{
+    "themes": [
+        {
+            "id": 0,
+            "title": "JS",
+            "urlPath": "/js/index",
+            "name": "index",
+            "contentPath": "/content/js/index.md",
+            "classActive": false
+        }
+    ]
+}

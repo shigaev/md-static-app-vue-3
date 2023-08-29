@@ -1,5 +1,6 @@
 import {createRouter, createWebHistory} from "vue-router";
 import ListVue from "@/data/vue/themes.json";
+import ListJS from "@/data/js/themes.json";
 import NotFound from "@/views/NotFound.vue";
 
 const layout = "base-layout";
@@ -9,7 +10,7 @@ const router = createRouter({
     routes: [
         {
             path: "/vue",
-            name: "vue",
+            name: "Vue",
             meta: {
                 title: "Vue",
                 layout: layout,
@@ -18,7 +19,7 @@ const router = createRouter({
         },
         {
             path: "/vue/:name",
-            name: "view",
+            name: "Vue view",
             meta: {
                 title: "View",
                 layout: layout,
@@ -41,13 +42,37 @@ const router = createRouter({
             },
         },
         {
-            path: "/:pathMatch(.*)*",
-            name: "NotFound",
+            path: "/js",
+            name: "Js",
             meta: {
-                title: "Error 404",
-                layout: "not-found-layout",
+                title: "JS",
+                layout: layout,
             },
-            component: NotFound,
+            component: () => import("../views/js/Index.vue"),
+        },
+        {
+            path: "/js/:name",
+            name: "Js view",
+            meta: {
+                title: "View",
+                layout: layout,
+            },
+            component: () => import("../views/js/View.vue"),
+            beforeEnter(to) {
+                const sitePath = to.path;
+                const listThemes = ListJS.themes;
+                const resultPath = listThemes.some(
+                    (item) => item.urlPath === sitePath
+                );
+
+                if (!resultPath)
+                    return {
+                        name: "NotFound",
+                        params: {pathMatch: to.path.substring(1).split("/")},
+                        query: to.query,
+                        hash: to.hash,
+                    };
+            },
         },
         {
             path: "/",
@@ -57,6 +82,24 @@ const router = createRouter({
                 layout: layout,
             },
             component: () => import("../views/Main.vue"),
+        },
+        {
+            path: "/collecting-information",
+            name: "Collecting information",
+            meta: {
+                title: "Collecting information",
+                layout: layout,
+            },
+            component: () => import("../views/СollectingInformation.vue"),
+        },
+        {
+            path: "/:pathMatch(.*)*",
+            name: "NotFound",
+            meta: {
+                title: "Error 404",
+                layout: "not-found-layout",
+            },
+            component: NotFound,
         }
     ],
 });

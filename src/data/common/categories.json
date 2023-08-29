@@ -1,9 +1,14 @@
 {
-  "categories": [
-    {
-      "id": 0,
-      "name": "Vue",
-      "link": "/vue"
-    }
-  ]
+    "categories": [
+        {
+            "id": 0,
+            "name": "Vue",
+            "link": "/vue"
+        },
+        {
+            "id": 1,
+            "name": "JavaScript",
+            "link": "/js"
+        }
+    ]
 }
